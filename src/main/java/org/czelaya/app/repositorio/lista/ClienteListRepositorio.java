@@ -1,53 +1,20 @@
-package org.czelaya.app.repositorio;
+package org.czelaya.app.repositorio.lista;
 
 import org.czelaya.app.modelo.Cliente;
+import org.czelaya.app.repositorio.AbstractaListRepositorio;
+import org.czelaya.app.repositorio.Orden;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteListRepositorio implements OrdenablePaginableCrudRepositorio {
-
-    private final List<Cliente> clientes;
-
-    public ClienteListRepositorio() {
-        this.clientes = new ArrayList<>();
-    }
-
-    @Override
-    public List<Cliente> findAll() {
-        return this.clientes;
-    }
-
-    @Override
-    public Cliente findById(Integer id) {
-        Cliente resultado = null;
-        for (Cliente c : clientes) {
-            if (c.getId() != null && c.getId().equals(id)) {
-                resultado = c;
-                break;
-            }
-        }
-        return resultado;
-    }
-
-    @Override
-    public void save(Cliente cliente) {
-        this.clientes.add(cliente);
-    }
+// aquí van las propias las que no se pueden reutilizar
+public class ClienteListRepositorio extends AbstractaListRepositorio<Cliente> {
 
     @Override
     public void update(Cliente cliente) {
         Cliente c = this.findById(cliente.getId());
         c.setNombre(cliente.getNombre());
         c.setApellido(cliente.getApellido());
-    }
-
-    @Override
-    public void delete(Integer id) {
-        Cliente cliente = findById(id);
-        if (cliente != null) {
-            this.clientes.remove(cliente);
-        }
     }
 
     @Override
@@ -66,11 +33,6 @@ public class ClienteListRepositorio implements OrdenablePaginableCrudRepositorio
         return listaOrdenada;
     }
 
-    @Override
-    public List<Cliente> findAll(int page, int limit) {
-        return clientes.subList(page * limit, Math.min(page * limit + limit, clientes.size()));
-    }
-
     public static int ordenar(String campo, Cliente a, Cliente b) {
         int resultado = 0;
         switch (campo) {
@@ -79,10 +41,5 @@ public class ClienteListRepositorio implements OrdenablePaginableCrudRepositorio
             case "apellido" -> resultado = a.getApellido().compareTo(b.getApellido());
         }
         return resultado;
-    }
-
-    @Override
-    public int totalRegistros() {
-        return this.clientes.size();
     }
 }

@@ -1,17 +1,15 @@
 package org.czelaya.app.repositorio;
 
-import org.czelaya.app.modelo.Cliente;
-
 import java.util.List;
 
-public interface CrudRepositorio {
-    List<Cliente> findAll();
+public interface CrudRepositorio<T> {
+    List<T> findAll();
 
-    Cliente findById(Integer id);
+    T findById(Integer id);
 
-    void save(Cliente cliente);
+    void save(T cliente);
 
-    void update(Cliente cliente);
+    void update(T cliente);
 
     void delete(Integer id);
 }

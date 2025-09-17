@@ -2,12 +2,13 @@ package org.czelaya.app;
 
 import org.czelaya.app.modelo.Cliente;
 import org.czelaya.app.repositorio.*;
+import org.czelaya.app.repositorio.lista.ClienteListRepositorio;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        OrdenablePaginableCrudRepositorio repositorio = new ClienteListRepositorio();
+        OrdenablePaginableCrudRepositorio<Cliente> repositorio = new ClienteListRepositorio();
         repositorio.save(new Cliente("Juan", "Perez"));
         repositorio.save(new Cliente("Stefhani", "Lopez"));
         repositorio.save(new Cliente("Cristian", "Zelaya"));
