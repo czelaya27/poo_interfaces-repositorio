@@ -3,6 +3,7 @@ package org.czelaya.app.repositorio.lista;
 import org.czelaya.app.modelo.Cliente;
 import org.czelaya.app.repositorio.AbstractaListRepositorio;
 import org.czelaya.app.repositorio.Orden;
+import org.czelaya.app.repositorio.excepciones.LecturaAccesoDatoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class ClienteListRepositorio extends AbstractaListRepositorio<Cliente> {
 
     @Override
-    public void update(Cliente cliente) {
+    public void update(Cliente cliente) throws LecturaAccesoDatoException {
         Cliente c = this.findById(cliente.getId());
         c.setNombre(cliente.getNombre());
         c.setApellido(cliente.getApellido());

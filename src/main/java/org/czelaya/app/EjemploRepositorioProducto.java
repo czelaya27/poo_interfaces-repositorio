@@ -3,12 +3,13 @@ package org.czelaya.app;
 import org.czelaya.app.modelo.Producto;
 import org.czelaya.app.repositorio.Orden;
 import org.czelaya.app.repositorio.OrdenablePaginableCrudRepositorio;
+import org.czelaya.app.repositorio.excepciones.AccesoDatoException;
 import org.czelaya.app.repositorio.lista.ProductoListRepositorio;
 
 import java.util.List;
 
 public class EjemploRepositorioProducto {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AccesoDatoException {
         System.out.println("Ejemplo de uso de repositorio de productos");
 
         OrdenablePaginableCrudRepositorio<Producto> repositorio = new ProductoListRepositorio();

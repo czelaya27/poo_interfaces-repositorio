@@ -3,13 +3,14 @@ package org.czelaya.app.repositorio.lista;
 import org.czelaya.app.modelo.Producto;
 import org.czelaya.app.repositorio.AbstractaListRepositorio;
 import org.czelaya.app.repositorio.Orden;
+import org.czelaya.app.repositorio.excepciones.LecturaAccesoDatoException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoListRepositorio extends AbstractaListRepositorio<Producto> {
     @Override
-    public void update(Producto producto) {
+    public void update(Producto producto) throws LecturaAccesoDatoException {
         Producto p = this.findById(producto.getId());
         p.setNombre(producto.getNombre());
         p.setDescripcion(producto.getDescripcion());
